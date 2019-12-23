@@ -1,0 +1,31 @@
+Step 1: create new directories in your kafka directory
+
+ - kafka-logs
+ - zookeeper
+your directory after step 1 will be :
+
+ - bin 
+ - config
+ - kafka-logs
+ - libs
+ - site-docs
+ - zookeeper
+Step 2: Open C:/Kafka/config/server.properties and change below property
+
+ - log.dirs=C:/Kafka/kafka-logs
+Step 3: Open C:/Kafka/config/zookeeper.properties and change belwo property
+
+ - dataDir=C:/Kafka/zookeeper
+
+Step 4: create a run.bat file with following script:
+
+call cd C:
+call cd C:\Kafka\bin\windows
+
+call start zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+call TIMEOUT 10
+
+call start kafka-server-start.bat ..\..\config\server.properties
+
+call exit

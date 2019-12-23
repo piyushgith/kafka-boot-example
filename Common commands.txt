@@ -1,0 +1,20 @@
+Now run the batch file and wait 
+
+//Create a Topic
+C:\Kafka\bin\windows>kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic Kafka_Example
+
+cd C: && cd C:\Kafka\bin\windows && kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic Kafka_Example_json
+
+//Create a consumer
+C:\Kafka\bin\windows>kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic Kafka_Example --from-beginning
+
+
+To stop the Kafka server
+
+In a command prompt:
+
+kafka-server-stop.bat
+
+then
+
+zookeeper-server-stop.bat
