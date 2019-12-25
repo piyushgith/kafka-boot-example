@@ -14,14 +14,27 @@ import com.spring.kafka.producer.example.entity.User;
 public class KafkaProducerController {
 
 	@Autowired
-	private KafkaTemplate<String, User> kafkaTemplate;
+	private KafkaTemplate<String, String> kafkaTemplate;
 
-	private static final String TOPIC = "Kafka_Example_json";
+	private static final String TOPIC_1 = "Kafka_Example";
 
-	@GetMapping("/{user}")
-	public String produceMessage(@PathVariable("user") String user) {
+	@GetMapping("/string/{str}")
+	public String produceMessage(@PathVariable("str") String str) {
 
-		kafkaTemplate.send(TOPIC, new User(user, "Technology", 12000L));
+		kafkaTemplate.send(TOPIC_1, str);
+
+		return "Produced Message for " + str;
+	}
+
+	@Autowired
+	private KafkaTemplate<String, User> kafkaTemplate_2;
+
+	private static final String TOPIC_2 = "Kafka_Example_json";
+
+	@GetMapping("/user/{user}")
+	public String produceUserMessage(@PathVariable("user") String user) {
+
+		kafkaTemplate_2.send(TOPIC_2, new User(user, "Technology", 12000L));
 
 		return "Produced Message for " + user;
 	}

@@ -16,20 +16,34 @@ import com.spring.kafka.producer.example.entity.User;
 public class KakfaConfiguration {
 
 	@Bean
-	public ProducerFactory<String, User> producerFactory() {
+	public ProducerFactory<String, User> producerUserFactory() {
 		Map<String, Object> config = new HashMap<>();
 
 		config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-		config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, org.apache.kafka.common.serialization.StringSerializer.class);
-		config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, org.springframework.kafka.support.serializer.JsonSerializer.class);
+		config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,org.apache.kafka.common.serialization.StringSerializer.class);
+		config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,org.springframework.kafka.support.serializer.JsonSerializer.class);
 
 		return new DefaultKafkaProducerFactory<>(config);
-
 	}
 
 	@Bean
-	public KafkaTemplate<String, User> kafkaTemplate() {
-		return new KafkaTemplate<String, User>(producerFactory());
+	public KafkaTemplate<String, User> kafkaUserTemplate() {
+		return new KafkaTemplate<String, User>(producerUserFactory());
 	}
 
+	@Bean
+	public ProducerFactory<String, String> producerFactory() {
+		Map<String, Object> config = new HashMap<>();
+
+		config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+		config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,org.apache.kafka.common.serialization.StringSerializer.class);
+		config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,org.apache.kafka.common.serialization.StringSerializer.class);
+
+		return new DefaultKafkaProducerFactory<>(config);
+	}
+
+	@Bean
+	public KafkaTemplate<String, String> kafkaTemplate() {
+		return new KafkaTemplate<String, String>(producerFactory());
+	}
 }

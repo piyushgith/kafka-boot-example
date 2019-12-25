@@ -2,9 +2,9 @@ package com.spring.kafka.producer.example.entity;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User /* implements Serializable */{
 
-	private static final long serialVersionUID = 6385983152732107433L;
+	//private static final long serialVersionUID = 6385983152732107433L;
 
 	private String name;
 	private String dept;
