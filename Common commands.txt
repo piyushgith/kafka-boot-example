@@ -1,14 +1,30 @@
 Now run the batch file and wait 
 
-To stop the Kafka server
 
-In a command prompt:
+Latest Docs:  https://kafka.apache.org/quickstart 
+
+
+
+Create Topics 
+
+kafka-topics.bat --create --topic Kafka_Example --bootstrap-server localhost:9092
+
+kafka-topics.bat --create --topic Kafka_Example_json --bootstrap-server localhost:9092
+
+
+
+
+To stop the Kafka server
 
 kafka-server-stop.bat
 
 then
 
 zookeeper-server-stop.bat
+
+
+
+
 
 
 
