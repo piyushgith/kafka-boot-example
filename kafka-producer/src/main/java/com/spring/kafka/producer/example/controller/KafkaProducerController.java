@@ -13,30 +13,31 @@ import com.spring.kafka.producer.example.entity.User;
 @RequestMapping("/kafka-producer")
 public class KafkaProducerController {
 
-	@Autowired
-	private KafkaTemplate<String, String> kafkaTemplate;
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
-	private static final String TOPIC_1 = "Kafka_Example";
+    private static final String TOPIC_1 = "Kafka_Example";
 
-	@GetMapping("/string/{str}")
-	public String produceMessage(@PathVariable("str") String str) {
+    @GetMapping("/string/{str}")
+    public String produceMessage(@PathVariable("str") String str) {
 
-		kafkaTemplate.send(TOPIC_1, str);
+        kafkaTemplate.send(TOPIC_1, str);
 
-		return "Produced Message for " + str;
-	}
+        return "Produced Message for " + str;
+    }
 
-	@Autowired
-	private KafkaTemplate<String, User> kafkaTemplate_2;
+    @Autowired
+    private KafkaTemplate<String, User> kafkaTemplate_2;
 
-	private static final String TOPIC_2 = "Kafka_Example_json";
+    private static final String TOPIC_2 = "Kafka_Example_json";
 
-	@GetMapping("/user/{user}")
-	public String produceUserMessage(@PathVariable("user") String user) {
-
-		kafkaTemplate_2.send(TOPIC_2, new User(user, "Technology", 12000L));
-
-		return "Produced Message for " + user;
-	}
+    @GetMapping("/user/{user}")
+    public String produceUserMessage(@PathVariable("user") String name) {
+        String key = name;
+        User user1 = new User(name, "Technology", 12000L);
+        kafkaTemplate_2.send(TOPIC_2, key, user1);
+        System.out.println("Message sent with key: " + key + ", value: " + user1.toString());
+        return "Produced Message for " + user1.toString();
+    }
 
 }
