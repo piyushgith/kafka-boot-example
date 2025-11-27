@@ -1,0 +1,14 @@
+kafka:
+  clusters:
+    - name: local
+      bootstrapServers: localhost:9092
+
+
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
+
+auth:
+  type: LOGIN_FORM
