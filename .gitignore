@@ -31,3 +31,7 @@ build/
 .vscode/
 /Kafka/logs/**
 Kafka/logs/**
+Kafka/zookeeper/**
+/Kafka/zookeeper/**
+/Kafka/kafka-logs/**
+Kafka/kafka-logs/**
